@@ -1,2 +1,6 @@
 # UnbiasedRVs
-Let's make sure the masses of transiting planets are inferred accurately!
+This repository is intended to house a Jupyter notebook and manuscript to be submitted to the Research Notes of the American Astronomical Society focusing on the inference of masses of transiting planets found by missions like TESS.
+
+Here, I simulate a series of planetary systems that are observed by simulated RV instruments. When these observations are continued until a fractional precision is achieved (a Doppler semiamplitude at six sigma, for example, such as a measurement of K = 6 \pm 1 m/s), this causes the typical planetary mass to be overestimated, especially for the planets that have their masses measured in a smaller number of observing epochs. Therefore, the observed distribution (and planetary mass-radius diagram) is biased towards denser planets than actually exist, especially for the first planets to be measured.
+
+Instead, I argue that observing teams should set criteria for stopping to observe a star that does not depend on the inferred mass at any time, which eliminates this bias. These teams should also plainly list their criteria for establishing a "detection" in their resultant publications, and also publish their non-detections to avoid biasing population studies of transiting planetary systems.
