@@ -36,90 +36,95 @@ Chicago, 5640 S. Ellis Ave, Chicago, IL 60637, USA}
 %% Note that RNAAS manuscripts DO NOT have abstracts.
 %% See the online documentation for the full list of available subject
 %% keywords and the rules for their use.
-\keywords{methods: statistical --- planets and satellites: fundamental parameters --- techniques: radial velocities
+\keywords{methods: statistical --- techniques: radial velocities
 }
 
 \section{}
 
 %% Start the main body of the article. If no sections in the 
 %% research note leave the \section call blank to make the title.
-We now know of thousands of transiting planets, with as many as 100,000 to be
-discovered by \tess, PLATO, and eventually \wf\ \citep{Sullivan15, Montet17a, Barclay18}. Many of these will be amenable to radial velocity (RV) followup: a
-\tess\ primary science requirement is the measurement 50 masses of planets
-smaller than Neptune \citep[e.g.][]{Plavchan15}. For these stars, typically RV
-observations are collected until the mass is measured to some precision, so
-that the posterior distribution excludes zero at a particular predetermined
-confidence level. 
-For example, the NASA Exoplanet Archive \citep{Akeson13} lists 17 \textit{K2}-discovered planets with
-published Doppler semiamplitudes. Eleven of these are significant at the $3\sigma$ level; 
-nine of these eleven are within 10\% of being either a 4- or 6-$\sigma$ measurement.
-Here, I show that this strategy systematically biases the maximum likelihood
-estimate of the mass of each planet upward, especially when an observing campaign's 
-fixed length is taken into account, which will have implications for analyses of
-the densities and atmospheres of individual planets and for population studies.
+The \tess\ mission will detect many transiting planets 
+amenable to radial velocity (RV) followup: a
+\tess\ primary science requirement is the measurement of 50 masses of planets
+smaller than Neptune. The transit signals that \tess\ will detect will be observed by a growing worldwide network of precision RV instruments \citep{Wright17}. Each team
+will have a finite amount of observing time and will need to determine how to allocate these resources efficiently among planets.
+One common strategy is to observe targets until some fractional precision on the Doppler semiamplitude is achieved. 
+In practice, this means stars are observed until the planet signal is found to be nonzero at a particular significance threshold, often $6\sigma$.
+Here, I show that this strategy systematically biases the inferred mass of the typical planet upward, especially when an observing campaign's 
+fixed length is taken into account. This bias will have implications for studies of planetary interiors and atmospheres.
 
-Assume a transiting exoplanet survey satellite detects hundreds of small
-planets of a similar size around bright stars amenable for RV followup.
-These planets are likely to be observed by a growing network of precision 
-RV instruments around the world \citep{Wright17}. 
-At any given time, measurements of a planet with mass $M$ will be noisy, with a maximum likelihood mass estimate $\hat{M}$ and uncertainty $\sigma$.
+Measurements of a planet with mass $M$ are noisy, with a maximum likelihood mass estimate $\hat{M}$ and uncertainty $\sigma$.
 In general,
 when uncertainties are dominated by statistical measurement errors $\sigma$ 
-decreases with an increase in the number of observations.\footnote{This statement assumes that stellar activity is modeled appropriately
+decreases with continued observations.\footnote{This statement assumes stellar activity is modeled appropriately
 and is separable from the planet signal.} When $\hat{M} > M$, a given fractional
-precision will be achieved with fewer observations, so that overestimated planet masses to be measured as significant before underestimated planet masses for planets of a given mass. While photon noise is equally likely to cause an inferred mass of $\hat{M} = M + \delta M$ or $\hat{M} = M - \delta M$ at a given $\sigma$, $M + \delta M$ is more likely to be ruled significant in this scheme. If RV observations are then stopped once significance is
-achieved, this will bias population results.
+precision will be achieved with fewer observations, so that overestimated planet masses will be considered significant before underestimated planet masses. While photon noise is equally likely to cause an inferred mass of $\hat{M} = M + \delta M$ or $\hat{M} = M - \delta M$ at a given $\sigma$, $M + \delta M$ is more likely to be ruled significant. If RV observations are then stopped once significance is
+achieved, this will bias inferred masses to larger values.
 
-To show this, I simulate a series of planetary systems\footnote{\url{https://github.com/benmontet/UnbiasedRVs}} with a single signal due to a planet
-on a circular orbit, as most planets with short periods have low eccentricity \citep{Shabram16}. I then simulate observations of each planet, obtaining an RV measurement of each planet at a random phase and measurement uncertainty equal to the size of the planetary signal until there are at least 8 RV epochs
-and the inferred planet is measured to a precision of 16\% (nonzero at $6\sigma$). 
+To show this, I simulate a series of planetary systems\footnote{\url{https://github.com/benmontet/UnbiasedRVs}} with a signal due to one planet
+on a circular orbit, as most short-period planets have low eccentricity \citep{Shabram16}. I then simulate RV observations of each star at random phase and with measurement uncertainty equal in size to the planetary signal, collecting observations until there are at least 8 RV epochs and the inferred planet mass is measured to a precision of 16\% (nonzero at $6\sigma$). 
 
 
-The end result is shown in Figure 1. The mean inferred mass is 9\% larger than
+The result is shown in Figure 1. The mean inferred mass is 9\% larger than
 the input masses. 59\% of all targets have overestimated masses, 24\% by more 
 than 1$\sigma$ (vs. 16\% expected). 
-
-These results are not too extreme, but they assume all planets eventually have their masses measured. In practice, observing time is fixed and limited, and often only the most significant planets are announced. 
-If we restrict ourselves to the 41\% of stars that had a mass measurement
-after 60 epochs in our simulation and neglect the rest, then 95\% of all ``publishable'' targets at the end of this simulated observing season have overestimated masses, 57\% by more than $1\sigma$
+These results assume all planets eventually have their masses measured. 
+If we restrict ourselves to only the 41\% of simulated stars that had a $6\sigma$ mass measurement
+after 60 epochs, 95\% of all ``publishable'' targets at the end of this simulated observing season have overestimated masses, 57\% by more than $1\sigma$
 and 17\% by more than $2\sigma$. The mean inferred Doppler amplitude is 1.29 m s$^{-1}$.
+The bias becomes more extreme the fewer observing epochs are permitted; the first significant detections are often the most extreme outliers.
+With a systematic noise floor, this would be more extreme as detections would only be achievable when $\hat{M}$ was significantly larger than that floor, regardless of the true mass.
 
 \begin{figure}[htp]
 
 \centering
-\includegraphics[width=.3\textwidth]{f1.png}\hfill
-\includegraphics[width=.3\textwidth]{f2.png}\hfill
-\includegraphics[width=.3\textwidth]{f3.png}
+\includegraphics[width=.99\textwidth]{fig.pdf}\hfill
 
-\caption{Inferred mass of a population of planets which induce a 1 m s$^{-1}$ Doppler signal on their host star. (Left) Mass distribution for planets observed until their mass is deemed significant at the $6\sigma$ level. (Center) The same, only including planets with significant mass measurements within 60 epochs. 95\% of masses are overestimated, 57\% at the $1\sigma$ level. (Right) Mass distribution when a criterion to end observing is determined before obtaining data based on the expected signal for the planet. In this scenario, the observed mass distribution is unbiased.}
+
+\caption{Inferred mass of a population of planets that induce a 1 m s$^{-1}$ Doppler signal on their host star. (Left) Mass distribution for planets observed until their mass is deemed significant at the $6\sigma$ level. (Center) The same, only including planets with significant mass measurements within 60 epochs. (Right) Inferred mass distribution when a criterion to end observing does not depend on the inferred mass itself.}
 \label{fig}
 
 \end{figure}
 
-Therefore, any observing strategy that only publishes planet masses once they reach a certain significance threshold will bias population studies of planet densities and compositions unless they also publish their non-detections and their internal criteria for selecting when to observe---and when to stop observing---targets.
+Therefore, any observing strategy that only publishes planet masses once they reach a certain fractional precision will bias population studies of planet densities and compositions unless they also publish their non-detections \citep[e.g.][]{Marcy14} and their internal criteria for selecting when to observe---and when to stop observing---targets.
 
-This effect can be ameliorated if, instead of observing until a certain fractional mass precision is achieved, a star is observed until a particular absolute mass precision is achieved. 
-From assumptions of a planetary mass-radius relation, an estimate can be made of the expected RV signal before any observations are made \citep[e.g.][]{Chen17}. If the above simulation is repeated, but carried out such that all stars are observed until the Doppler semiamplitude is measured to a precision of 0.16 m s$^{-1}$, or 16\% of the \textit{a priori} RV signal, any overestimate of $\hat{M}$ at any given time cannot affect the choice to continue observing, and this bias disappears. In this case, an inferred mass of $\hat{M} = M + \delta M$ or $\hat{M} = M - \delta M$ is still equally likely, but observing decisions will not be made based on that measurement. When we restrict ourselves to the stars with a significant mass measurement within 60 epochs, then the results are unchanged and the bias is still removed.
+This effect can be ameliorated if, instead of observing until a certain fractional mass precision is achieved, stars are observed until a particular absolute mass precision is achieved. 
+If the above simulation is carried out so that stars are observed until the Doppler semiamplitude is measured to a pre-determined absolute precision, any overestimate of $\hat{M}$ cannot affect the choice to continue observing. In this case, an inferred mass of $\hat{M} = M + \delta M$ or $\hat{M} = M - \delta M$ is still equally likely, but observing decisions will not be made from that inference. When we restrict ourselves to stars with a significant mass measurement within 60 epochs, the results are similar. Observing every follow-up target to the same
+precision may be a suboptimal allocation of observing resources, but a precision could
+be determined as a function of the observed planet radius as an expected RV signal can be estimated before any spectra are collected \citep[e.g.][]{Wolfgang16, Chen17}. Even if this estimate is inaccurate, it should not lead to a bias in the inferred planet mass $\hat{M}$ if the stopping criteria do not depend on $\hat{M}$ itself.
 
-Regardless of observing strategy, observing teams should also be encouraged to continue to observe targets after a fractional precision is achieved, and to publish their observing criteria for each star as well as their planet non-detections. If stars are only observed until planet signals are detected at the 6$\sigma$ level (or any arbitrary fractional precision), the first bona fide Earth mass planet to be observed is more likely to be initially interpreted as having a composition similar to Mercury than Earth.
+
+Observing teams should be encouraged to continue to observe targets after significance is achieved, and to publish their observing---and stopping---criteria for each planet and each non-detection. If stars are only observed until planet signals are detected at the 6$\sigma$ level (or any arbitrary fractional precision), the first bona fide Earth-like planet to be observed is more likely to be initially interpreted as having a composition similar to Mercury than Earth.
 
 
 
 
 \acknowledgments
 
-I thank Megan Bedell for being great \textbf{Megan: please feel free to suggest something over the top here}, and the University of Chicago Exoplanet Journal Club for conversations that inspired this note. This work was performed under contract with the Jet Propulsion
+I thank Megan Bedell, Jacob Bean, and Emily Gilbert for providing feedback on a draft of this note, and the University of Chicago Exoplanet Journal Club for conversations that inspired this note. This work was performed under contract with the Jet Propulsion
 Laboratory (JPL) funded by NASA through the Sagan Fellowship Program executed
 by the NASA Exoplanet Science Institute.
 
-\software{%
-  numpy \citep{numpy},
-  matplotlib \citep{matplotlib},
-  scipy \citep{scipy},
-  jupyter \citep{jupyter}
-  }
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
-\bibliography{exopapers}
+\bibitem[{{Chen} \& {Kipping}(2017)}]{Chen17}
+{Chen}, J., \& {Kipping}, D. 2017, \apj, 834, 17
+
+\bibitem[{{Marcy} {et~al.}(2014)}]{Marcy14}
+{Marcy}, G.~W., {Isaacson}, H., {Howard}, A.~W., {et~al.} 2014, \apjs, 210, 20
+
+\bibitem[{{Shabram} {et~al.}(2016)}]{Shabram16}
+{Shabram}, M., {Demory}, B.-O., {Cisewski}, J., {Ford}, E.~B., \& {Rogers}, L.
+  2016, \apj, 820, 93
+
+\bibitem[{{Wolfgang} {et~al.}(2016)}]{Wolfgang16}
+{Wolfgang}, A., {Rogers}, L.~A., \& {Ford}, E.~B. 2016, \apj, 825, 19
+
+\bibitem[{Wright \& Robertson(2017)}]{Wright17}
+Wright, J.~T., \& Robertson, P. 2017, Research Notes of the AAS, 1, 51
+
+\end{thebibliography}
 
 
 \end{document}
