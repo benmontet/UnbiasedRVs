@@ -1,5 +1,5 @@
 # UnbiasedRVs
-This repository is intended to house a Jupyter notebook and manuscript to be submitted to the Research Notes of the American Astronomical Society focusing on the inference of masses of transiting planets found by missions like TESS.
+This repository is intended to house a Jupyter notebook and manuscript accepted to the Research Notes of the American Astronomical Society (preprint available at https://arxiv.org/abs/1805.01906) focusing on the inference of masses of transiting planets found by missions like TESS.
 
 Here, I simulate a series of planetary systems that are observed by simulated RV instruments. When these observations are continued until a fractional precision is achieved (a Doppler semiamplitude at six sigma, for example, such as a measurement of K = 6 \pm 1 m/s), this causes the typical planetary mass to be overestimated, especially for the planets that have their masses measured in a smaller number of observing epochs. Therefore, the observed distribution (and planetary mass-radius diagram) is biased towards denser planets than actually exist, especially for the first planets to be measured.
 
